@@ -46,14 +46,38 @@ public class Main {
 			System.out.println("============== The Count: "+count+" ======================");
 			//check for file extension
 			String extension = FilenameUtils.getExtension(filename); 
-			if( extension == "java" ) 
+			
+	
+			
+			
+			if (extension.matches("java")) 
 			{
-				
+				System.out.println("Java File Detected");
 			}
-			else if(extension == "cpp") 
+			else if(extension.matches("cpp")) 
 			{
-				
+				System.out.println("C++ File Detected");
 			}
+			else 
+			{
+				System.out.println("File Extension Not Supported");
+			}
+			
+			
+			
+			
+//			if( extension == "java" ) 
+//			{
+//				System.out.println("Java File Detected");
+//			}
+//			else if(extension == "cpp") 
+//			{
+//				System.out.println("C++ File Detected");
+//			}
+//			else 
+//			{
+//				System.out.println("Invalid File Extension");
+//			}
 			
 			
 			
