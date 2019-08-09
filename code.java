@@ -1,3 +1,9 @@
-public class code {
-public static long fibonacci ( long number )
+public class code{
+if(1==1) { if (condition) {
+	
+			}
+		if(condition) {
+			checkif ifcheck
+		}
+	}
 }
