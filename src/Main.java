@@ -2,13 +2,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.apache.commons.io.FilenameUtils;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
+		
 		ArrayList<String> result = new ArrayList<>();
 		String filename = "code.java";
-		int complexity = 0;
 		int count = 0;
 		
 		try {
@@ -18,7 +19,7 @@ public class Main {
 			while(file.ready()) 
 			{
 				char character = (char) file.read();
-		        if (character == ' ') {
+		        if (character == '\n') {
 		            result.add(sb.toString());
 		            sb = new StringBuffer();
 		        } 
@@ -31,21 +32,31 @@ public class Main {
 			if (sb.length() < 0) {
 		        result.add(sb.toString());
 		    }
+			System.out.println("============ The Result Array Size: "+result.size()+" ===================");
 			
 			//If condition series
 			for(int i=0; i < result.size(); i++) 
 			{
-				if(result.get(i).toString() == "public")
-				{
-					System.out.println("Found!");
-				}
 				
 				System.out.println(result.get(i));
 				count = count +1;
 				
+				
 			}
-			System.out.println(count);
-			System.out.println(complexity);
+			System.out.println("============== The Count: "+count+" ======================");
+			//check for file extension
+			String extension = FilenameUtils.getExtension(filename); 
+			if( extension == "java" ) 
+			{
+				
+			}
+			else if(extension == "cpp") 
+			{
+				
+			}
+			
+			
+			
 			
 			
 			
