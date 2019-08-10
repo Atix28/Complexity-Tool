@@ -56,8 +56,9 @@ public class Main {
 				ctc_java ctc = new ctc_java(line);
 				ArrayList <Integer> ctc_units = ctc.getCtc();
 				for(int i=0;i<ctc_units.size();i++) {
-					System.out.println("\t"+ i+1 + " Line has " + ctc_units.get(i) + " Ctc");
+					System.out.println("\t"+ (1+i) + " Line has " + ctc_units.get(i) + " Ctc");
 				}
+				System.out.println("\tTotal Ctc : " + ctc.getTotalCtc());
 				System.out.println("========== End of Ctc check ==========");
 			}
 			else if(extension.matches("cpp")) 
