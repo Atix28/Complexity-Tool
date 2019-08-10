@@ -90,4 +90,14 @@ public class Cr {
 			calculateCr();
 			return Cr;
 		}
+		
+		public int getTotalCr() {
+			int total = 0;
+
+			for (int i = 0; i < Cr.size(); i++) {
+				total += Cr.get(i);
+			}
+
+			return total;
+		}
 }
