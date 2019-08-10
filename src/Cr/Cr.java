@@ -82,6 +82,12 @@ public class Cr {
 						}
 				}
 
-}
-}
+			}
+	}
+	
+	// output array of Cr
+		public ArrayList<Integer> getCr() {
+			calculateCr();
+			return Cr;
+		}
 }
