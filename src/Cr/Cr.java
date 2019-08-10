@@ -26,5 +26,23 @@ public class Cr {
 		this.lines = lines;
 		Cr = cps;
 	}
+	
+	public void calculateCr() {
 
+		// "{}" Bracket count
+				int bracket = 0;
+
+				for (int i = 0; i < lines.size(); i++) {
+
+					Pattern pattern = Pattern.compile(function_regex);
+					Matcher matcher = pattern.matcher(lines.get(i));
+	
+					// check for function name
+					if (matcher.find()) {
+						word = matcher.group(3);
+						startLine = i;
+					}
+				}
+
+}
 }
