@@ -3,6 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
+
+import Cs.cs_java;
 import Ctc.*;
 
 public class Main {
@@ -53,6 +55,20 @@ public class Main {
 				}
 				System.out.println("\tTotal Ctc : " + ctc.getTotalCtc());
 				System.out.println("========== End of Ctc check ==========");
+					System.out.println("\t" + i + 1 + " Line has " + ctc_units.get(i) + " Ctc");
+				}
+				System.out.println("\tTotal Ctc : " + ctc.getTotalCtc());
+				System.out.println("========== End of Ctc check ==========");
+
+				System.out.println("========== Starting Cs check ==========");
+				cs_java Cs = new cs_java(line);
+				ArrayList<Integer> Cs_units = Cs.getCs();
+				for (int i = 0; i < Cs_units.size(); i++) {
+					System.out.println("\t" + i + 1 + " Line has " + Cs_units.get(i) + " Cs");
+				}
+				System.out.println("\tTotal Ctc : " + Cs.getTotalCs());
+				System.out.println("========== End of Cs check ==========");
+      
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
 			} else {
