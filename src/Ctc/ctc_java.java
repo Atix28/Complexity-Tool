@@ -9,11 +9,12 @@ public class ctc_java {
 	ArrayList <String> lines;
 	ArrayList <Integer> ctc_units;
 	
-	//expressions for checking Control structures
-	String if_regx = "/(if |if\\()/g";
+	//expressions for checking if conditions
+	String if_regx = "(^if\\s|^if\\(|\\sif |\\sif\\()";
 
 	public ctc_java(ArrayList <String> lines) {
 		this.lines = lines;
+		ctc_units = new ArrayList<Integer>(lines.size());
 	}
 	
 	public int if_count(String line) {
@@ -26,6 +27,17 @@ public class ctc_java {
 			count++;
 		}
 		return count;
+	}
+	
+	public void addtoArray() {
+		for(int i=0; i<lines.size();i++) {
+			ctc_units.add(if_count(lines.get(i)));
+		}
+	}
+	
+	public ArrayList<Integer> getCtc() {
+		addtoArray();
+		return ctc_units;
 	}
 	
 }
