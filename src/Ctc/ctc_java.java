@@ -10,7 +10,17 @@ public class ctc_java {
 	ArrayList <Integer> ctc_units;
 	
 	//expressions for checking if conditions
-	String if_regx = "(^if\\s|^if\\(|\\sif |\\sif\\()";
+	String if_regex = "((?<!\\S)(if\\s*\\())";
+	//expressions for checking logical conditions
+	String logical_regex = "(\\|\\||\\&\\&)";
+	//expressions for checking bitwise conditions
+	String bitwise_regex = "(?<!\\|)(?<!\\&)(\\||\\&)(?!\\|)(?!\\&)";
+	//expressions for checking iterative control structure
+	String iterative_regex = "((?<!\\S)(while\\s*\\(.*\\)\\s*(?!\\s*;)|do\\s*\\{|do\\s*(?!.))|for\\s*\\()";
+	//expressions for checking catch statements
+	String chatch_regex = "((?<!\\S)(catch\\s*\\())";
+	//expressions for checking switch case conditions
+	String case_regex = "((?<!\\S)(case\\s+.*\\:|default\\s*\\:))";
 
 	public ctc_java(ArrayList <String> lines) {
 		this.lines = lines;
@@ -19,7 +29,31 @@ public class ctc_java {
 	
 	public int if_count(String line) {
 		
-		Pattern pattern = Pattern.compile(if_regx);
+		Pattern pattern = Pattern.compile(if_regex);
+		Matcher matcher = pattern.matcher(line);
+		
+		int count = 0;
+		while(matcher.find()) {
+			count++;
+		}
+		return count;
+	}
+	
+	public int logical_count (String line) {
+		
+		Pattern pattern = Pattern.compile(logical_regex);
+		Matcher matcher = pattern.matcher(line);
+		
+		int count = 0;
+		while(matcher.find()) {
+			count++;
+		}
+		return count;
+	}
+	
+	public int bitwise_count (String line) {
+		
+		Pattern pattern = Pattern.compile(bitwise_regex);
 		Matcher matcher = pattern.matcher(line);
 		
 		int count = 0;
@@ -31,7 +65,12 @@ public class ctc_java {
 	
 	public void addtoArray() {
 		for(int i=0; i<lines.size();i++) {
-			ctc_units.add(if_count(lines.get(i)));
+			
+			int if_count = if_count(lines.get(i));
+			int logical_count = logical_count(lines.get(i));
+			int bitwise_count = bitwise_count(lines.get(i));
+			
+			ctc_units.add(if_count + logical_count + bitwise_count);
 		}
 	}
 	
