@@ -11,8 +11,11 @@ if(1==1) { if (condition) {
 		case 1:
 		case 2:
 		default:
+		new
+		
 		}
 		
 		try {} catch() {}
+		throw{}
 	}
 }
