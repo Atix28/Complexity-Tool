@@ -60,7 +60,7 @@ public class Main {
 				cs_java Cs = new cs_java(line);
 				ArrayList<Integer> Cs_units = Cs.getCs();
 				for (int i = 0; i < Cs_units.size(); i++) {
-					System.out.println("\t" + i + 1 + " Line has " + Cs_units.get(i) + " Cs");
+					System.out.println("\t" + (i + 1) + " Line has " + Cs_units.get(i) + " Cs");
 				}
 				System.out.println("\tTotal Ctc : " + Cs.getTotalCs());
 				System.out.println("========== End of Cs check ==========");
