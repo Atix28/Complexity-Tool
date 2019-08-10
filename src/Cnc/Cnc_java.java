@@ -10,12 +10,13 @@ public class Cnc_java {
 	ArrayList<Integer> CncUnits;
 	Integer brackets = 0;
 
-	// check for control structures with open brackets
+	// Expression for control structures with open brackets
 	String bracket_regex = "\\b((if|while|for|do)(\\s+|\\().*\\{)";
-	// check for single bracket or empty line
+	// Expression for single bracket or empty line
 	String singleline_regex = "^(\\s*\\}\\s*)|^(\\s*)$";
-	String open_brackets = "{";
-	String close_brackets = "}";
+	// Expression for brackets
+	String open_brackets = "\\{";
+	String close_brackets = "\\}";
 
 	public Cnc_java(ArrayList<String> lines) {
 		this.lines = lines;
@@ -38,18 +39,22 @@ public class Cnc_java {
 		Pattern single = Pattern.compile(singleline_regex);
 		Pattern close_p = Pattern.compile(close_brackets);
 
+		// Check each line for Cnc
 		for (int i = 0; i < lines.size(); i++) {
 			int count = 0;
 			String line = lines.get(i);
+			// check for conditions and loops
 			Matcher matcher = pattern.matcher(line);
 			while (matcher.find()) {
 				addBracket();
 			}
 			count = brackets;
+			// check for close brackets
 			Matcher close_m = close_p.matcher(line);
 			while (close_m.find()) {
 				removBracket();
 			}
+			// check for lines with brackets or empty line
 			Matcher singleline = single.matcher(line);
 			if (singleline.find())
 				count = 0;
