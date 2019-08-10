@@ -7,5 +7,12 @@ if(1==1) { if (condition) {
 		}
 		
 		if (condition | and & or) {}
+		switch () {
+		case 1:
+		case 2:
+		default:
+		}
+		
+		try {} catch() {}
 	}
 }

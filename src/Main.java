@@ -52,11 +52,13 @@ public class Main {
 			if (extension.matches("java")) 
 			{
 				System.out.println("-Java File Detected-");
+				System.out.println("========== Starting Ctc check ==========");
 				ctc_java ctc = new ctc_java(line);
 				ArrayList <Integer> ctc_units = ctc.getCtc();
 				for(int i=0;i<ctc_units.size();i++) {
-					System.out.println(i+1 + " Line has " + ctc_units.get(i) + " if conditons");
+					System.out.println("\t"+ i+1 + " Line has " + ctc_units.get(i) + " Ctc");
 				}
+				System.out.println("========== End of Ctc check ==========");
 			}
 			else if(extension.matches("cpp")) 
 			{
