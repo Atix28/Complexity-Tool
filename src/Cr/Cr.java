@@ -42,7 +42,46 @@ public class Cr {
 						word = matcher.group(3);
 						startLine = i;
 					}
+					
+					// if function founds
+					if (!word.matches("")) {
+
+						Pattern bracketOpenP = Pattern.compile(openBrackets);
+						Matcher bracketOpenM = bracketOpenP.matcher(lines.get(i));
+
+						Pattern bracketCloseP = Pattern.compile(closeBrackets);
+						Matcher bracketCloseM = bracketCloseP.matcher(lines.get(i));
+						
+						// count brackets
+						while (bracketOpenM.find()) {
+							bracket++;
+						}
+						while (bracketCloseM.find()) {
+							bracket--;
+						}
+						if (bracket == 1) {
+
+							Pattern recP = Pattern.compile(rec_regex);
+							Matcher recM = recP.matcher(lines.get(i));
+							
+							// find if recursive
+							if (recM.find()) {
+								endLine = i;
+								for (int j = startLine; j <= endLine; j++) {
+									int newCr = Cr.get(j) * 2;
+									Cr.set(j, newCr);
+								}
+								bracket = 0;
+								word = "";
+							}
+						} else if (bracket < 1) {
+							bracket = 0;
+							startLine = 0;
+							endLine = 0;
+							word = "";
+						}
 				}
 
+}
 }
 }
