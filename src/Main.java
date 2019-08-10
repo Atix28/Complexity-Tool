@@ -51,7 +51,7 @@ public class Main {
 				ctc_java ctc = new ctc_java(line);
 				ArrayList<Integer> ctc_units = ctc.getCtc();
 				for (int i = 0; i < ctc_units.size(); i++) {
-					System.out.println("\t" + i + 1 + " Line has " + ctc_units.get(i) + " Ctc");
+					System.out.println("\t" + (1 + i) + " Line has " + ctc_units.get(i) + " Ctc");
 				}
 				System.out.println("\tTotal Ctc : " + ctc.getTotalCtc());
 				System.out.println("========== End of Ctc check ==========");
@@ -60,11 +60,12 @@ public class Main {
 				cs_java Cs = new cs_java(line);
 				ArrayList<Integer> Cs_units = Cs.getCs();
 				for (int i = 0; i < Cs_units.size(); i++) {
-					System.out.println("\t" + i + 1 + " Line has " + Cs_units.get(i) + " Cs");
+					System.out.println("\t" + (i + 1) + " Line has " + Cs_units.get(i) + " Cs");
 				}
 				System.out.println("\tTotal Ctc : " + Cs.getTotalCs());
 				System.out.println("========== End of Cs check ==========");
-
+		
+      
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
 			} else {
