@@ -70,9 +70,9 @@ public class Main {
 				Cnc_java Cnc = new Cnc_java(line);
 				ArrayList<Integer> Cnc_units = Cnc.getCnc();
 				for (int i = 0; i < Cnc_units.size(); i++) {
-					System.out.println("\t" + (i + 1) + " Line has " + Cnc_units.get(i) + " Cs");
+					System.out.println("\t" + (i + 1) + " Line has " + Cnc_units.get(i) + " Cnc");
 				}
-				System.out.println("\tTotal Ctc : " + Cnc.getTotalCnc());
+				System.out.println("\tTotal Cnc : " + Cnc.getTotalCnc());
 				System.out.println("========== End of Cnc check ==========");
 
 			} else if (extension.matches("cpp")) {
