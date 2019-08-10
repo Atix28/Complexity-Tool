@@ -12,8 +12,11 @@ public class cs_java {
 	String keyword_regx = "\\b(?!public |static |else |else\\{|try |try\\{|return )[\\d\\w]+";
 	// Expression for checking the special words throw,throws,new,delete
 	String special_reg = "\\b(new |delete |throw |throws |throw\\{|throws\\{)";
-	//Expression for checking the relational operators 
+	// Expression for checking the relational operators 
 	String relation_reg ="\\b(==| == |!=| != |>=| >= |<=| <= |>| > |<| < )";
+	// Expression for checking the Arithmetic operators
+	String arithmetic_reg = "\\b(\\++| \\++ |--| -- |\\*| \\* |\\/| \\/ |%| % |\\+| \\+ |\\-| \\-)";
+	// Expression for checking the 
 
 	public cs_java(ArrayList<String> lines) {
 		this.lines = lines;
@@ -43,7 +46,7 @@ public class cs_java {
 			count++;
 			
 		}
-		System.out.println(count);
+		
 		return count;
 	}
 	public int relation_count(String line) {
@@ -56,7 +59,20 @@ public class cs_java {
 			count++;
 			
 		}
-		System.out.println(count);
+		
+		return count;
+	}
+	public int arithmatic_count(String line) {
+
+		Pattern pattern = Pattern.compile(arithmetic_reg);
+		Matcher matcher = pattern.matcher(line);
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+			
+		}
+		
 		return count;
 	}
 	
@@ -67,7 +83,8 @@ public class cs_java {
 			int keyword_count = keyword_count(lines.get(i));
 			int special_count = special_count(lines.get(i));
 			int relation_count = relation_count(lines.get(i));
-			CsUnit.add(keyword_count + special_count + relation_count);
+			int arithmatic_count = arithmatic_count(lines.get(i));
+			CsUnit.add(keyword_count + special_count + relation_count + arithmatic_count);
 			
 		}
 	}
