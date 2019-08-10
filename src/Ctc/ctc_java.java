@@ -27,6 +27,7 @@ public class ctc_java {
 		ctc_units = new ArrayList<Integer>(lines.size());
 	}
 	
+	//get ctc due to if conditions
 	public int if_count(String line) {
 		
 		Pattern pattern = Pattern.compile(if_regex);
@@ -39,6 +40,7 @@ public class ctc_java {
 		return count;
 	}
 	
+	//get ctc due to logical conditions
 	public int logical_count (String line) {
 		
 		Pattern pattern = Pattern.compile(logical_regex);
@@ -51,6 +53,7 @@ public class ctc_java {
 		return count;
 	}
 	
+	//get ctc due to bitwise conditions
 	public int bitwise_count (String line) {
 		
 		Pattern pattern = Pattern.compile(bitwise_regex);
@@ -63,6 +66,7 @@ public class ctc_java {
 		return count;
 	}
 	
+	//get ctc due to iterative statements
 	public int iterative_count (String line) {
 		
 		Pattern pattern = Pattern.compile(iterative_regex);
@@ -70,11 +74,12 @@ public class ctc_java {
 		
 		int count = 0;
 		while(matcher.find()) {
-			count++;
+			count+=2;
 		}
 		return count;
 	}
 	
+	//get ctc due to catch statements
 	public int catch_count (String line) {
 		
 		Pattern pattern = Pattern.compile(catch_regex);
@@ -87,6 +92,7 @@ public class ctc_java {
 		return count;
 	}
 	
+	//get ctc due to case statements
 	public int case_count (String line) {
 		
 		Pattern pattern = Pattern.compile(case_regex);
@@ -99,11 +105,11 @@ public class ctc_java {
 		return count;
 	}
 	
+	//calculate ctc
 	public void addtoArray() {
 		for(int i=0; i<lines.size();i++) {
 			
 			//get Ctc for each line
-			
 			int if_count = if_count(lines.get(i));
 			int logical_count = logical_count(lines.get(i));
 			int bitwise_count = bitwise_count(lines.get(i));
@@ -112,14 +118,25 @@ public class ctc_java {
 			int case_count = case_count(lines.get(i));
 			
 			//get total count for Ctc
-			
 			ctc_units.add(if_count + logical_count + bitwise_count + iterative_count + catch_count + case_count);
 		}
 	}
 	
+	//get Ctc output as an array
 	public ArrayList<Integer> getCtc() {
 		addtoArray();
 		return ctc_units;
+	}
+	
+	//get total ctc
+	public int getTotalCtc() {
+		int total = 0;
+		
+		for(int i=0; i<ctc_units.size();i++) {
+			total += ctc_units.get(i);
+		}
+		
+		return total;
 	}
 	
 }
