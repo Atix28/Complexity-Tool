@@ -5,138 +5,138 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ctc_java {
-	
-	ArrayList <String> lines;
-	ArrayList <Integer> ctc_units;
-	
-	//expressions for checking if conditions
+
+	ArrayList<String> lines;
+	ArrayList<Integer> ctc_units;
+
+	// expressions for checking if conditions
 	String if_regex = "((?<!\\S)(if\\s*\\())";
-	//expressions for checking logical conditions
+	// expressions for checking logical conditions
 	String logical_regex = "(\\|\\||\\&\\&)";
-	//expressions for checking bitwise conditions
+	// expressions for checking bitwise conditions
 	String bitwise_regex = "(?<!\\|)(?<!\\&)(\\||\\&)(?!\\|)(?!\\&)";
-	//expressions for checking iterative control structure
+	// expressions for checking iterative control structure
 	String iterative_regex = "((?<!\\S)(while\\s*\\(.*\\)\\s*(?!\\s*;)|do\\s*\\{|do\\s*(?!.))|for\\s*\\()";
-	//expressions for checking catch statements
+	// expressions for checking catch statements
 	String catch_regex = "((?<!\\S)(catch\\s*\\())";
-	//expressions for checking switch case conditions
+	// expressions for checking switch case conditions
 	String case_regex = "((?<!\\S)(case\\s+.*\\:|default\\s*\\:))";
 
-	public ctc_java(ArrayList <String> lines) {
+	public ctc_java(ArrayList<String> lines) {
 		this.lines = lines;
 		ctc_units = new ArrayList<Integer>(lines.size());
 	}
-	
-	//get ctc due to if conditions
+
+	// get ctc due to if conditions
 	public int if_count(String line) {
-		
+
 		Pattern pattern = Pattern.compile(if_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
+		while (matcher.find()) {
 			count++;
 		}
 		return count;
 	}
-	
-	//get ctc due to logical conditions
-	public int logical_count (String line) {
-		
+
+	// get ctc due to logical conditions
+	public int logical_count(String line) {
+
 		Pattern pattern = Pattern.compile(logical_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
+		while (matcher.find()) {
 			count++;
 		}
 		return count;
 	}
-	
-	//get ctc due to bitwise conditions
-	public int bitwise_count (String line) {
-		
+
+	// get ctc due to bitwise conditions
+	public int bitwise_count(String line) {
+
 		Pattern pattern = Pattern.compile(bitwise_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
+		while (matcher.find()) {
 			count++;
 		}
 		return count;
 	}
-	
-	//get ctc due to iterative statements
-	public int iterative_count (String line) {
-		
+
+	// get ctc due to iterative statements
+	public int iterative_count(String line) {
+
 		Pattern pattern = Pattern.compile(iterative_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
-			count+=2;
+		while (matcher.find()) {
+			count += 2;
 		}
 		return count;
 	}
-	
-	//get ctc due to catch statements
-	public int catch_count (String line) {
-		
+
+	// get ctc due to catch statements
+	public int catch_count(String line) {
+
 		Pattern pattern = Pattern.compile(catch_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
+		while (matcher.find()) {
 			count++;
 		}
 		return count;
 	}
-	
-	//get ctc due to case statements
-	public int case_count (String line) {
-		
+
+	// get ctc due to case statements
+	public int case_count(String line) {
+
 		Pattern pattern = Pattern.compile(case_regex);
 		Matcher matcher = pattern.matcher(line);
-		
+
 		int count = 0;
-		while(matcher.find()) {
+		while (matcher.find()) {
 			count++;
 		}
 		return count;
 	}
-	
-	//calculate ctc
+
+	// calculate ctc
 	public void addtoArray() {
-		for(int i=0; i<lines.size();i++) {
-			
-			//get Ctc for each line
+		for (int i = 0; i < lines.size(); i++) {
+
+			// get Ctc for each line
 			int if_count = if_count(lines.get(i));
 			int logical_count = logical_count(lines.get(i));
 			int bitwise_count = bitwise_count(lines.get(i));
 			int iterative_count = iterative_count(lines.get(i));
 			int catch_count = catch_count(lines.get(i));
 			int case_count = case_count(lines.get(i));
-			
-			//get total count for Ctc
+
+			// get total count for Ctc
 			ctc_units.add(if_count + logical_count + bitwise_count + iterative_count + catch_count + case_count);
 		}
 	}
-	
-	//get Ctc output as an array
+
+	// get Ctc output as an array
 	public ArrayList<Integer> getCtc() {
 		addtoArray();
 		return ctc_units;
 	}
-	
-	//get total ctc
+
+	// get total ctc
 	public int getTotalCtc() {
 		int total = 0;
-		
-		for(int i=0; i<ctc_units.size();i++) {
+
+		for (int i = 0; i < ctc_units.size(); i++) {
 			total += ctc_units.get(i);
 		}
-		
+
 		return total;
 	}
-	
+
 }
