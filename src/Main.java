@@ -88,6 +88,19 @@ public class Main {
 				*/
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
+				System.out.println("========== Starting Ctc check ==========");
+				ctc_java ctc = new ctc_java(line);
+				ArrayList<Integer> ctc_units = ctc.getCtc();
+				for (int i = 0; i < ctc_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + ctc_units.get(i) + " Ctc");
+				}
+				System.out.println("\tTotal Ctc : " + ctc.getTotalCtc());
+				System.out.println("========== End of Ctc check ==========");
+
+				
+				
+				
+				
 				System.out.println("========== Starting Cs check ==========");
 				Cs_c Cs = new Cs_c(line);
 				ArrayList<Integer> Cs_units = Cs.getCs();
@@ -97,6 +110,15 @@ public class Main {
 				System.out.println("\tTotal Ctc : " + Cs.getTotalCs());
 				System.out.println("========== End of Cs check ==========");
 
+				
+				System.out.println("========== Starting Cnc check ==========");
+				Cnc_java Cnc = new Cnc_java(line);
+				ArrayList<Integer> Cnc_units = Cnc.getCnc();
+				for (int i = 0; i < Cnc_units.size(); i++) {
+					System.out.println("\t" + (i + 1) + " Line has " + Cnc_units.get(i) + " Cnc");
+				}
+				System.out.println("\tTotal Cnc : " + Cnc.getTotalCnc());
+				System.out.println("========== End of Cnc check ==========");
 			} else {
 				System.out.println("File Extension Not Supported");
 			}
