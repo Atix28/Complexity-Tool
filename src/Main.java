@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc_java;
-import Cs.cs_java;
+import Cs.Cs_c;
+import Cs.Cs_java;
 import Ctc.*;
 
 public class Main {
@@ -58,7 +59,7 @@ public class Main {
 				System.out.println("========== End of Ctc check ==========");
 
 				System.out.println("========== Starting Cs check ==========");
-				cs_java Cs = new cs_java(line);
+				Cs_java Cs = new Cs_java(line);
 				ArrayList<Integer> Cs_units = Cs.getCs();
 				for (int i = 0; i < Cs_units.size(); i++) {
 					System.out.println("\t" + (i + 1) + " Line has " + Cs_units.get(i) + " Cs");
@@ -78,7 +79,7 @@ public class Main {
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
 				System.out.println("========== Starting Cs check ==========");
-				cs_java Cs = new cs_java(line);
+				Cs_c Cs = new Cs_c(line);
 				ArrayList<Integer> Cs_units = Cs.getCs();
 				for (int i = 0; i < Cs_units.size(); i++) {
 					System.out.println("\t" + (i + 1) + " Line has " + Cs_units.get(i) + " Cs");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class cs_java {
+public class Cs_java {
 	ArrayList<String> lines;
 	ArrayList<Integer> CsUnit;
 
@@ -24,8 +24,12 @@ public class cs_java {
 	String mic_reg = "\\b\\w\\s*(\\,| \\, |\\-\\>| \\-\\> |\\.| \\. |\\:\\:| \\:\\: )\\s*\\w";
 	// Expression for checking the Assignment operators
 	String ass_reg = "\\b\\w\\s*(\\>\\>\\>\\=| \\>\\>\\>\\= |\\<\\<\\=| \\<\\<\\= |\\>\\>\\=| \\>\\>\\= |\\^\\=| \\^\\= |\\|\\=| \\|\\= |\\&\\=| \\&\\= |\\%\\=| \\%\\= |\\/\\=| \\/\\= |\\*\\=| \\*\\= |\\-\\=| \\-\\= |\\+\\=| \\+\\= |\\=| \\= )\\s*\\w";
+	// Expression for checking the Manipulators operators
+	String man_reg = "\\b(endl|\\n)";
+	// Express for checking the String
+	String str_reg ="(\\\".+\\\")";
 
-	public cs_java(ArrayList<String> lines) {
+	public Cs_java(ArrayList<String> lines) {
 		this.lines = lines;
 		CsUnit = new ArrayList<Integer>(lines.size());
 	}
@@ -127,6 +131,7 @@ public class cs_java {
 
 		return count;
 	}
+
 	public int ass_count(String line) {
 
 		Pattern pattern = Pattern.compile(ass_reg);
@@ -141,6 +146,34 @@ public class cs_java {
 		return count;
 	}
 
+	public int man_count(String line) {
+
+		Pattern pattern = Pattern.compile(man_reg);
+		Matcher matcher = pattern.matcher(line);
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+
+		}
+
+		return count;
+	}
+	public int str_count(String line) {
+
+		Pattern pattern = Pattern.compile(str_reg);
+		Matcher matcher = pattern.matcher(line);
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+
+		}
+
+		return count;
+	}
+
+
 	public void addtoArray() {
 		for (int i = 0; i < lines.size(); i++) {
 			int keyword_count = keyword_count(lines.get(i));
@@ -151,8 +184,10 @@ public class cs_java {
 			int bitwise_count = bitwise_count(lines.get(i));
 			int mic_count = mic_count(lines.get(i));
 			int ass_count = ass_count(lines.get(i));
+			int man_count = man_count(lines.get(i));
+			int str_count = str_count(lines.get(i));
 			CsUnit.add(keyword_count + special_count + relation_count + arithmatic_count + logical_count + bitwise_count
-					+ mic_count + ass_count);
+					+ mic_count + ass_count + man_count + str_count);
 
 		}
 	}
