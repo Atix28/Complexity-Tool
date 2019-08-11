@@ -1,5 +1,6 @@
 public class code{
-if(1==1) { if (condition) {
+if(1==1) { 
+	if (condition) {
 	
 			}
 		if(condition || condition 2 && conditon 3 | sd) {
@@ -27,4 +28,20 @@ if(1==1) { if (condition) {
 		try {} catch() {}
 		throw{}
 	}
+
+private void funcs() {
+	if(cin) {
+		if(condition) {
+			sss
+		}
+	}
+	return funcs();
+}
+public bool fabina() {
+	if(conditon) {
+		if(ss) {}
+	}
+	return fabina();
+}
+last line;
 }
