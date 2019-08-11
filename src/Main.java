@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc_java;
+import Cr.Cr;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
@@ -75,7 +76,16 @@ public class Main {
 				}
 				System.out.println("\tTotal Cnc : " + Cnc.getTotalCnc());
 				System.out.println("========== End of Cnc check ==========");
-
+				/*
+				System.out.println("========== Starting Cr check ==========");
+				Cr cr = new Cr(line,Cnc_units);
+				ArrayList <Integer> Cr_units = cr.getCr();
+				for(int i =0; i < Cr_units.size();i++) {
+					System.out.println("\t" + (i + 1) + " Line has " + Cr_units.get(i) + " Cr");
+				}
+				System.out.println("\tTotal Cr : " + cr.getTotalCr());
+				System.out.println("========== End of Cnc check ==========");
+				*/
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
 				System.out.println("========== Starting Cs check ==========");
