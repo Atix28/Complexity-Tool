@@ -21,6 +21,8 @@ public class ctc_java {
 	String catch_regex = "((?<!\\S)(catch\\s*\\())";
 	// expressions for checking switch case conditions
 	String case_regex = "((?<!\\S)(case\\s+.*\\:|default\\s*\\:))";
+	// expressions for checking conditions of loop
+	String loop_group_regex = "\\b(while|for)(\\s*\\(\\s*)(.+)(\\s*\\))";
 
 	public ctc_java(ArrayList<String> lines) {
 		this.lines = lines;
@@ -43,12 +45,22 @@ public class ctc_java {
 	// get ctc due to logical conditions
 	public int logical_count(String line) {
 
+		Pattern pattern_check = Pattern.compile(loop_group_regex);
+		Matcher matcher_check = pattern_check.matcher(line);
+
+		int increment = 1;
+
+		if (matcher_check.find()) {
+			line = matcher_check.group(3);
+			increment = 2;
+		}
+
 		Pattern pattern = Pattern.compile(logical_regex);
 		Matcher matcher = pattern.matcher(line);
 
 		int count = 0;
 		while (matcher.find()) {
-			count++;
+			count += increment;
 		}
 		return count;
 	}
@@ -56,12 +68,21 @@ public class ctc_java {
 	// get ctc due to bitwise conditions
 	public int bitwise_count(String line) {
 
+		Pattern pattern_check = Pattern.compile(loop_group_regex);
+		Matcher matcher_check = pattern_check.matcher(line);
+
+		int increment = 1;
+
+		if (matcher_check.find()) {
+			line = matcher_check.group(3);
+			increment = 2;
+		}
 		Pattern pattern = Pattern.compile(bitwise_regex);
 		Matcher matcher = pattern.matcher(line);
 
 		int count = 0;
 		while (matcher.find()) {
-			count++;
+			count += increment;
 		}
 		return count;
 	}

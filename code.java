@@ -11,7 +11,7 @@ if(1==1) {
 				}
 			}
 		}
-		for (condition) {
+		for (condition | s  || ds) {
 			for (conditon 2) {
 				fff
 			}
