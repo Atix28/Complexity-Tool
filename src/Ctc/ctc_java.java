@@ -29,7 +29,7 @@ public class ctc_java {
 		ctc_units = new ArrayList<Integer>(lines.size());
 	}
 
-	// get ctc due to if conditions
+	// get Ctc due to if conditions
 	public int if_count(String line) {
 
 		Pattern pattern = Pattern.compile(if_regex);
@@ -42,15 +42,17 @@ public class ctc_java {
 		return count;
 	}
 
-	// get ctc due to logical conditions
+	// get Ctc due to logical conditions
 	public int logical_count(String line) {
 
+		// check for conditions inside loops
 		Pattern pattern_check = Pattern.compile(loop_group_regex);
 		Matcher matcher_check = pattern_check.matcher(line);
 
 		int increment = 1;
 
 		if (matcher_check.find()) {
+			// conditions inside a loop
 			line = matcher_check.group(3);
 			increment = 2;
 		}
@@ -65,18 +67,21 @@ public class ctc_java {
 		return count;
 	}
 
-	// get ctc due to bitwise conditions
+	// get Ctc due to bitwise conditions
 	public int bitwise_count(String line) {
 
+		// check for conditions inside loops
 		Pattern pattern_check = Pattern.compile(loop_group_regex);
 		Matcher matcher_check = pattern_check.matcher(line);
 
 		int increment = 1;
 
 		if (matcher_check.find()) {
+			// conditions inside a loop
 			line = matcher_check.group(3);
 			increment = 2;
 		}
+		
 		Pattern pattern = Pattern.compile(bitwise_regex);
 		Matcher matcher = pattern.matcher(line);
 
@@ -87,7 +92,7 @@ public class ctc_java {
 		return count;
 	}
 
-	// get ctc due to iterative statements
+	// get Ctc due to iterative statements
 	public int iterative_count(String line) {
 
 		Pattern pattern = Pattern.compile(iterative_regex);
@@ -100,7 +105,7 @@ public class ctc_java {
 		return count;
 	}
 
-	// get ctc due to catch statements
+	// get Ctc due to catch statements
 	public int catch_count(String line) {
 
 		Pattern pattern = Pattern.compile(catch_regex);
@@ -113,7 +118,7 @@ public class ctc_java {
 		return count;
 	}
 
-	// get ctc due to case statements
+	// get Ctc due to case statements
 	public int case_count(String line) {
 
 		Pattern pattern = Pattern.compile(case_regex);
@@ -149,7 +154,7 @@ public class ctc_java {
 		return ctc_units;
 	}
 
-	// get total ctc
+	// get total Ctc
 	public int getTotalCtc() {
 		int total = 0;
 
