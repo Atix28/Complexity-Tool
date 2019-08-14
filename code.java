@@ -5,13 +5,12 @@ if(1==1) {
 			}
 		if(condition || condition 2 && conditon 3 | sd) {
 			checkif ifcheck
-			if() {
-				if() {
+			if(condition) 
+				if(condtion) {
 					sddd
 				}
-			}
 		}
-		for (condition) {
+		for (condition | s  || ds) {
 			for (conditon 2) {
 				fff
 			}
@@ -28,7 +27,9 @@ if(1==1) {
 		try {} catch() {}
 		throw{}
 	}
-
+do {
+	
+}while (condition || condition && condition);
 private void funcs() {
 	if(cin) {
 		if(condition) {

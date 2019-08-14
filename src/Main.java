@@ -9,6 +9,7 @@ import Cr.Cr;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
+import inputValidator.FormatValidator;
 
 public class Main {
 
@@ -35,6 +36,11 @@ public class Main {
 			}
 			if (sb.length() < 0) {
 				line.add(sb.toString());
+			}
+			System.out.println("============ Validating " + line.size() + " Lines of Code ===================");
+			FormatValidator validator = new FormatValidator(line);
+			if(!validator.runValidator()) {
+				return;
 			}
 			System.out.println("============ The Result Array Size: " + line.size() + " ===================");
 
