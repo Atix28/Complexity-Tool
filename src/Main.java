@@ -84,6 +84,15 @@ public class Main {
 				System.out.println("\tTotal Cnc : " + Cnc.getTotalCnc());
 				System.out.println("========== End of Cnc check ==========");
 				
+				System.out.println("========== Starting Ci check ==========");
+				Ci_java ci = new Ci_java(line);
+				ArrayList<Integer> Ci_units = ci.getCi();
+				for (int i = 0; i < Ci_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Ci_units.get(i) + " Ci");
+				}
+				System.out.println("\tTotal Ci : " + ci.getTotalCi());
+				System.out.println("========== End of Ci check ==========");
+				
 //				System.out.println("========== Starting Cr check ==========");
 //				Cr cr = new Cr(line,Cnc_units);
 //				ArrayList <Integer> Cr_units = cr.getCr();
