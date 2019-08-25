@@ -23,20 +23,35 @@ public class Ci_java {
 
         Pattern pattern_check = Pattern.compile(noinheritance_regex);
         Matcher matcher_check = pattern_check.matcher(line);
-        int count = 10;
+        
+        Pattern pattern_check2 = Pattern.compile(extend_regex);
+        Matcher matcher_check2 = pattern_check2.matcher(line);
+
+        
+        int CCi = 0;
 //		while (matcher_check.find()) {
 //			count += 2;
 //		}
         
         if(matcher_check.find()) {
-        	count += 2;
+        	int numOfAncestorClasses = 1; 
+        	CCi = numOfAncestorClasses +1;
         }
-		return count;
+        else if(matcher_check2.find()){
+        	int numOfAncestorClasses = 2; 
+        	CCi = numOfAncestorClasses +1;        	
+        }
+        else {
+        	CCi =2 ;
+        }
+		return CCi;
     }
 
     //calculate Ci
-    public void addtoArray() {
+    public void addtoArray() {    	
 		for (int i = 0; i < lines.size(); i++) {
+		//for (int i = 0; i < 1; i++) {
+
 		int noinheritance_count = noinheritance_count(lines.get(i));
 		
 		Ci_units.add(noinheritance_count);
