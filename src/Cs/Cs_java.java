@@ -25,9 +25,9 @@ public class Cs_java {
 	// Expression for checking the Assignment operators
 	String ass_reg = "\\b\\w\\s*(\\>\\>\\>\\=| \\>\\>\\>\\= |\\<\\<\\=| \\<\\<\\= |\\>\\>\\=| \\>\\>\\= |\\^\\=| \\^\\= |\\|\\=| \\|\\= |\\&\\=| \\&\\= |\\%\\=| \\%\\= |\\/\\=| \\/\\= |\\*\\=| \\*\\= |\\-\\=| \\-\\= |\\+\\=| \\+\\= |\\=| \\= )\\s*\\w";
 	// Expression for checking the Manipulators operators
-	String man_reg = "\\b(endl|\\n)";
+	String man_reg = "((endl)\\b|(\"\\\\n\"))";
 	// Express for checking the String
-	String str_reg ="(\\\".+\\\")";
+	String str_reg ="\\\"(.*?)\\\"";
 
 	public Cs_java(ArrayList<String> lines) {
 		this.lines = lines;
@@ -189,7 +189,7 @@ public class Cs_java {
 			int man_count = man_count(lines.get(i));
 			int str_count = str_count(lines.get(i));
 			CsUnit.add(keyword_count + special_count + relation_count + arithmatic_count + logical_count + bitwise_count
-					+ mic_count + ass_count + man_count + str_count);
+					+ mic_count + ass_count + man_count + str_count );
 
 		}
 	}
