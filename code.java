@@ -1,11 +1,13 @@
-public class code{
+public class code extends ex{
 if(1==1) { 
 	if (condition) {
-	
+	       
 			}
 		if(condition || condition 2 && conditon 3 | sd) {
 			checkif ifcheck
-			if(condition) { 
+			if(condition) {
+				
+			}
 				if(condtion) {
 					sddd
 				}
@@ -15,7 +17,7 @@ if(1==1) {
 				fff
 			}
 		}
-		if (condition | and & or) {}
+		if (condition | and & or) { }
 		switch () {
 		case 1:
 		case 2:
@@ -24,10 +26,18 @@ if(1==1) {
 		
 		}
 		
-		try {} catch() {}
-		throw{}
+		try { 
+			
+		} catch() {
+			
+		}
+		throw { }
 	}
+while(condition) {
+	
+}
 do {
+
 	
 }while (condition || condition && condition);
 private void funcs() {
@@ -37,6 +47,24 @@ private void funcs() {
 		}
 	}
 	return funcs();
+}
+public class notex extends lll {
+	code {}
+	code {
+	}
+	code
+	{
+		
+	}
+	public class notex extends lll {
+		code {}
+		code {
+		}
+		code
+		{
+			
+		}
+	}
 }
 public bool fabina() {
 	if(conditon) {
