@@ -6,7 +6,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc_java;
 import Cps.Cps_java;
-import Cr.Cr;
+import Cr.Cr_java;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
@@ -43,6 +43,7 @@ public class Main {
 			System.out.println("============ Validating " + line.size() + " Lines of Code ===================");
 			FormatValidator validator = new FormatValidator(line);
 			if(!validator.runValidator()) {
+				System.out.println(validator.getOutput());
 				return;
 			}
 			System.out.println("============ The Result Array Size: " + line.size() + " ===================");
