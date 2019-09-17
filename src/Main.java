@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc_java;
+import Cps.Cps_C;
 import Cps.Cps_java;
 import Cr.Cr_java;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
+import Tw.Tw_C;
 import Tw.Tw_java;
 import Ci.*;
 import inputValidator.FormatValidator;
@@ -156,6 +158,35 @@ public class Main {
 				}
 				System.out.println("\tTotal Cnc : " + Cnc.getTotalCnc());
 				System.out.println("========== End of Cnc check ==========");
+				
+				System.out.println("========== Starting Ci check ==========");
+				Ci_C ci = new Ci_C(line);
+				ArrayList<Integer> Ci_units = ci.getCi();
+				for (int i = 0; i < Ci_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Ci_units.get(i) + " Ci");
+				}
+				System.out.println("\tTotal Ci : " + ci.getTotalCi());
+				System.out.println("========== End of Ci check ==========");
+				
+				System.out.println("========== Starting Tw check ==========");
+				Tw_C Tw = new Tw_C(line);
+				ArrayList<Integer> Tw_units = Tw.getTw();
+				for (int i = 0; i < Tw_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Tw_units.get(i) + " Tw");
+				}
+				System.out.println("\tTotal Tw : " + Tw.getTotalTw() );
+				System.out.println("========== End of Tw check ==========");
+				
+				System.out.println("========== Starting Cps check ==========");
+				Cps_C Cps = new Cps_C(line);
+				ArrayList<Integer> Cps_units = Cps.getCps();
+				for (int i = 0; i < Cps_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Cps_units.get(i) + " Cps");
+				}
+				System.out.println("\tTotal Cps : " + Cps.getTotalCps() );
+				System.out.println("========== End of Cps check ==========");
+				
+				
 			} else {
 				System.out.println("File Extension Not Supported");
 			}
