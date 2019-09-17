@@ -9,13 +9,16 @@ public class Ci_java {
 	
 	ArrayList<String> lines;
 	ArrayList<Integer> ci_units;
-	int count = 0;
+	int brackets=0;
+	int count=0;
+	int addition = 1;
+	int lastcount =0;
 	
 	
     //expressions for checking non inheritance
-    String noextend_regex = "\\b(class)(\\s+\\w+\\s+)(\\{)";
+    String noextend_regex = "\\b(class)(\\s+\\w+\\s*)(\\{)";
     //expressions for checking extend condition
-    String extend_regex = "\\b(class)(\\s+\\w+\\s+)(extends)";
+    String extend_regex = "\\b(class)(\\s+\\w+\\s+)(extends)(\\s+\\w+\\s*\\{)";
     // Expression for single bracket or empty line
  	String singleline_regex = "^(\\s*\\}\\s*)|^(\\s*)$";
  	// Expression for brackets
@@ -28,49 +31,64 @@ public class Ci_java {
 		ci_units = new ArrayList<Integer>(lines.size());
 	}
  	
- 	public int inheritance_count(String line) {
+ 	public void addBracket() {
+		brackets++;
+	}
+
+	public void removeBracket() {
+		if (brackets > 0) {
+			brackets--;
+		}else {
+			count -= lastcount;
+		}
+	}
+ 	
+ 	public void inheritance_count() {
  		
-       Pattern pattern_check = Pattern.compile(noextend_regex);
-       Matcher matcher_check = pattern_check.matcher(line);
-        
-       Pattern pattern_extend = Pattern.compile(extend_regex);
-       Matcher matcher_extend = pattern_extend.matcher(line);
-        
-       Pattern patter_singleline = Pattern.compile(singleline_regex);
-       Matcher matcher_singleline = patter_singleline.matcher(line);
-
-       Pattern patter_openBrackets = Pattern.compile(open_brackets);
-       Matcher matcher_openBrackets = patter_singleline.matcher(line);
-
-       Pattern patter_closeBrackets = Pattern.compile(close_brackets);
-       Matcher matcher_closeBrackets = patter_singleline.matcher(line);
-       
-       int increment = 1;
-       if(matcher_check.find()) {
-    	   count += increment;
-       }
-       else if(matcher_singleline.find() || matcher_openBrackets.find() || matcher_closeBrackets.find()) {
-    	   count = 0;
-       }
-       return count;
+ 		Pattern normal_pattern = Pattern.compile(noextend_regex);
+ 		Pattern extended_pattern = Pattern.compile(extend_regex);
+		Pattern single = Pattern.compile(singleline_regex);
+		Pattern close_p = Pattern.compile(close_brackets);
+		Pattern open_p = Pattern.compile(open_brackets);
+		
+		
+ 		//check lines 1 by 1
+ 		for (int i = 0; i < lines.size(); i++) {
+			
+			String line = lines.get(i);
+			Matcher Nmatcher = normal_pattern.matcher(line);
+			Matcher Ematcher = extended_pattern.matcher(line);
+			Matcher singleM = single.matcher(line);
+			
+			if(brackets==0) {
+			if(Nmatcher.find()) {
+				count += 1;
+				lastcount = 1;
+				ci_units.add(count + addition);
+				continue;
+			} else if(Ematcher.find()) {
+				count += 2;
+				lastcount =2;
+				ci_units.add(count + addition);
+				continue;
+			}
+			}
+			Matcher openBrackets = open_p.matcher(line);
+			while(openBrackets.find()) addBracket();
+			Matcher closeBrackets = close_p.matcher(line);
+			while(closeBrackets.find()) removeBracket();
+			if(singleM.find()){
+				ci_units.add(0);
+				continue;
+			}
+			ci_units.add(count + addition);
+ 		}
        
  	}
  	
  	
-	public void addtoArray() {
-		for (int i = 0; i < lines.size(); i++) {
-
-			// get Ci for each line
-			int inheritance_count = inheritance_count(lines.get(i));
-
-			// get total count for Ci
-			ci_units.add(inheritance_count);
-		}
-	}
- 	
- 	
 	public ArrayList<Integer> getCi() {
-		addtoArray();
+		inheritance_count();
 		return ci_units;
 	}
 
