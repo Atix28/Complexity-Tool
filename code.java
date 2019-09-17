@@ -5,7 +5,7 @@ if(1==1) {
 			}
 		if(condition || condition 2 && conditon 3 | sd) {
 			checkif ifcheck
-			if(condition) 
+			if(condition) { 
 				if(condtion) {
 					sddd
 				}
