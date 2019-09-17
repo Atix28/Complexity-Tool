@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc_java;
+import Cps.Cps_java;
 import Cr.Cr;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
+import Tw.Tw_java;
 import Ci.*;
 import inputValidator.FormatValidator;
 
@@ -72,7 +74,7 @@ public class Main {
 				for (int i = 0; i < Cs_units.size(); i++) {
 					System.out.println("\t" + (i + 1) + " Line has " + Cs_units.get(i) + " Cs");
 				}
-				System.out.println("\tTotal Ctc : " + Cs.getTotalCs());
+				System.out.println("\tTotal Cs : " + Cs.getTotalCs());
 				System.out.println("========== End of Cs check ==========");
 
 				System.out.println("========== Starting Cnc check ==========");
@@ -92,6 +94,24 @@ public class Main {
 				}
 				System.out.println("\tTotal Ci : " + ci.getTotalCi());
 				System.out.println("========== End of Ci check ==========");
+				
+				System.out.println("========== Starting Tw check ==========");
+				Tw_java Tw = new Tw_java(line);
+				ArrayList<Integer> Tw_units = Tw.getTw();
+				for (int i = 0; i < Tw_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Tw_units.get(i) + " Tw");
+				}
+				System.out.println("\tTotal Tw : " + Tw.getTotalTw() );
+				System.out.println("========== End of Tw check ==========");
+				
+				System.out.println("========== Starting Cps check ==========");
+				Cps_java Cps = new Cps_java(line);
+				ArrayList<Integer> Cps_units = Cps.getCps();
+				for (int i = 0; i < Cps_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Cps_units.get(i) + " Cps");
+				}
+				System.out.println("\tTotal Cps : " + Cps.getTotalCps() );
+				System.out.println("========== End of Cps check ==========");
 				
 //				System.out.println("========== Starting Cr check ==========");
 //				Cr cr = new Cr(line,Cnc_units);
