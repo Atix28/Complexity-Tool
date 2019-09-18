@@ -8,7 +8,7 @@ public class Cnc_java {
 
 	ArrayList<String> lines;
 	ArrayList<Integer> CncUnits;
-	Integer brackets = 0;
+	int brackets = 0;
 
 	// Expression for control structures with open brackets
 	String bracket_regex = "\\b((if|while|for|do)(\\s+|\\().*\\{)";
