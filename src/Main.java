@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
-import Cnc.Cnc_java;
+import Cnc.Cnc;
 import Cps.Cps_C;
 import Cps.Cps_java;
-import Cr.Cr_java;
+import Cr.Cr;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
@@ -63,7 +63,7 @@ public class Main {
 			if (extension.matches("java")) {
 				System.out.println("-Java File Detected-");
 				System.out.println("========== Starting Ctc check ==========");
-				ctc_java ctc = new ctc_java(line);
+				Ctc ctc = new Ctc(line);
 				ArrayList<Integer> ctc_units = ctc.getCtc();
 				for (int i = 0; i < ctc_units.size(); i++) {
 					System.out.println("\t" + (1 + i) + " Line has " + ctc_units.get(i) + " Ctc");
@@ -81,7 +81,7 @@ public class Main {
 				System.out.println("========== End of Cs check ==========");
 
 				System.out.println("========== Starting Cnc check ==========");
-				Cnc_java Cnc = new Cnc_java(line);
+				Cnc Cnc = new Cnc(line);
 				ArrayList<Integer> Cnc_units = Cnc.getCnc();
 				for (int i = 0; i < Cnc_units.size(); i++) {
 					System.out.println("\t" + (i + 1) + " Line has " + Cnc_units.get(i) + " Cnc");
@@ -115,6 +115,14 @@ public class Main {
 				}
 				System.out.println("\tTotal Cps : " + Cps.getTotalCps() );
 				System.out.println("========== End of Cps check ==========");
+				System.out.println("========== Starting Cr check ==========");
+				Cr Cr = new Cr(line,Cps_units);
+				ArrayList<Integer> Cr_units = Cr.getCr();
+				for (int i = 0; i < Cr_units.size(); i++) {
+					System.out.println("\t" + (1 + i) + " Line has " + Cr_units.get(i) + " Cr");
+				}
+				System.out.println("\tTotal Cr : " + Cr.getTotalCr() );
+				System.out.println("========== End of Cr check ==========");
 				
 //				System.out.println("========== Starting Cr check ==========");
 //				Cr cr = new Cr(line,Cnc_units);
@@ -128,7 +136,7 @@ public class Main {
 			} else if (extension.matches("cpp")) {
 				System.out.println("C++ File Detected");
 				System.out.println("========== Starting Ctc check ==========");
-				ctc_java ctc = new ctc_java(line);
+				Ctc ctc = new Ctc(line);
 				ArrayList<Integer> ctc_units = ctc.getCtc();
 				for (int i = 0; i < ctc_units.size(); i++) {
 					System.out.println("\t" + (1 + i) + " Line has " + ctc_units.get(i) + " Ctc");
@@ -151,7 +159,7 @@ public class Main {
 
 				
 				System.out.println("========== Starting Cnc check ==========");
-				Cnc_java Cnc = new Cnc_java(line);
+				Cnc Cnc = new Cnc(line);
 				ArrayList<Integer> Cnc_units = Cnc.getCnc();
 				for (int i = 0; i < Cnc_units.size(); i++) {
 					System.out.println("\t" + (i + 1) + " Line has " + Cnc_units.get(i) + " Cnc");

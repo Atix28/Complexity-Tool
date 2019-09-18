@@ -13,7 +13,7 @@ if(1==1) {
 				}
 		}
 		for (condition | s  || ds) {
-			for (conditon 2) {
+			for (conditon 2 || condtion) {
 				fff
 			}
 		}
@@ -66,7 +66,7 @@ public class notex extends lll {
 		}
 	}
 }
-public bool fabina() {
+srting fabina() {
 	if(conditon) {
 		if(ss) {}
 	}

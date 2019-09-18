@@ -5,16 +5,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // Measuring complexity due to Recursions
-public class Cr_java {
+public class Cr {
 	
 	ArrayList<String> lines;
 	ArrayList<Integer> Cr;
 
 	String word = "";
 	// Expression for finding function
-	String function_regex = "(public|private)(\\s+\\w+\\s+)(\\w+\\s*)\\(";
+	String function_regex = "(\\w+\\s+)(\\w+\\s*)\\((.*?)\\)\\s*\\{";
 	// Expression for finding recursive
-	String rec_regex = "\\b(return\\s+(" + word + "))";
+	String rec_regex = "\\b("+word+")\\b\\s*\\((.*?)\\)";
 
 	String openBrackets = "\\{";
 	String closeBrackets = "\\}";
@@ -23,7 +23,7 @@ public class Cr_java {
 	int startLine = 0;
 	int endLine = 0;
 	
-	public Cr_java(ArrayList<String> lines, ArrayList<Integer> cps) {
+	public Cr(ArrayList<String> lines, ArrayList<Integer> cps) {
 		this.lines = lines;
 		Cr = cps;
 	}
@@ -40,8 +40,10 @@ public class Cr_java {
 	
 					// check for function name
 					if (matcher.find()) {
-						word = matcher.group(3);
+						word = matcher.group(2);
 						startLine = i;
+						bracket++;
+						continue;
 					}
 					
 					// if function founds

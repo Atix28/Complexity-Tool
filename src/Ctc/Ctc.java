@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ctc_java {
+public class Ctc {
 
 	ArrayList<String> lines;
 	ArrayList<Integer> ctc_units;
@@ -24,7 +24,7 @@ public class ctc_java {
 	// expressions for checking conditions of loop
 	String loop_group_regex = "\\b(while|for)(\\s*\\(\\s*)(.+)(\\s*\\))";
 
-	public ctc_java(ArrayList<String> lines) {
+	public Ctc(ArrayList<String> lines) {
 		this.lines = lines;
 		ctc_units = new ArrayList<Integer>(lines.size());
 	}

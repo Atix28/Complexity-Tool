@@ -2,8 +2,8 @@ package Tw;
 
 import java.util.ArrayList;
 import Ci.Ci_C;
-import Cnc.Cnc_C;
-import Ctc.ctc_c;
+import Cnc.Cnc;
+import Ctc.Ctc;
 
 public class Tw_C {
 	
@@ -17,8 +17,8 @@ public class Tw_C {
 	}
 	
 	public void calcTw() {
-		ctc_c ctc = new ctc_c(lines);
-		Cnc_C Cnc = new Cnc_C(lines);
+		Ctc ctc = new Ctc(lines);
+		Cnc Cnc = new Cnc(lines);
 		Ci_C ci = new Ci_C(lines);
 		
 		ArrayList<Integer> ctc_units = ctc.getCtc();
