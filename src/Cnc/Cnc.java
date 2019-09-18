@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Cnc_java {
+public class Cnc {
 
 	ArrayList<String> lines;
 	ArrayList<Integer> CncUnits;
@@ -18,7 +18,7 @@ public class Cnc_java {
 	String open_brackets = "\\{";
 	String close_brackets = "\\}";
 
-	public Cnc_java(ArrayList<String> lines) {
+	public Cnc(ArrayList<String> lines) {
 		this.lines = lines;
 		CncUnits = new ArrayList<Integer>(lines.size());
 	}

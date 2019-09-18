@@ -1,7 +1,7 @@
 package Tw;
 
-import Cnc.Cnc_java;
-import Ctc.ctc_java;
+import Cnc.Cnc;
+import Ctc.Ctc;
 import java.util.ArrayList;
 import Ci.Ci_java;
 
@@ -16,8 +16,8 @@ public class Tw_java {
 	}
 	
 	public void calcTw() {
-		ctc_java ctc = new ctc_java(lines);
-		Cnc_java Cnc = new Cnc_java(lines);
+		Ctc ctc = new Ctc(lines);
+		Cnc Cnc = new Cnc(lines);
 		Ci_java ci = new Ci_java(lines);
 		
 		ArrayList<Integer> ctc_units = ctc.getCtc();
