@@ -15,9 +15,7 @@ public class Cr_cpp {
 	String word = "";
 	// Expression for finding function
 	String function_regex = "(\\w+\\s+)(\\w+\\s*)\\((.*?)\\)\\s*\\{";
-	// Expression for finding recursive
-	String rec_regex = "\\b("+word+")\\b\\s*\\((.*?)\\)";
-
+	
 	String openBrackets = "\\{";
 	String closeBrackets = "\\}";
 
@@ -70,6 +68,9 @@ public class Cr_cpp {
 						while (bracketCloseM.find()) {
 							bracket--;
 						}
+						// Expression for finding recursive
+						String rec_regex = "\\b("+word+")\\b\\s*\\((.*?)\\)";
+
 						Pattern recP = Pattern.compile(rec_regex);
 						Matcher recM = recP.matcher(lines.get(i));
 						

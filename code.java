@@ -15,4 +15,11 @@ public class FactMain {
       return number * factorial(number - 1);
     }
   }
+  public void removeBracket() {
+		if (brackets > 0) {
+			brackets--;
+		}else {
+			count -= lastcount;
+		}
+	}
 }
