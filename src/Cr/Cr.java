@@ -22,6 +22,7 @@ public class Cr {
 	// initialize which lines are in recursive
 	int startLine = 0;
 	int endLine = 0;
+	boolean recc = false;
 	
 	public Cr(ArrayList<String> lines, ArrayList<Integer> cps) {
 		this.lines = lines;
@@ -41,6 +42,10 @@ public class Cr {
 					// check for function name
 					if (matcher.find()) {
 						word = matcher.group(2);
+						if(word.matches("main")) {
+							word ="";
+							continue;
+							}
 						startLine = i;
 						bracket++;
 						continue;
@@ -62,26 +67,24 @@ public class Cr {
 						while (bracketCloseM.find()) {
 							bracket--;
 						}
-						if (bracket == 1) {
-
-							Pattern recP = Pattern.compile(rec_regex);
-							Matcher recM = recP.matcher(lines.get(i));
-							
-							// find if recursive
-							if (recM.find()) {
-								endLine = i;
-								for (int j = startLine; j <= endLine; j++) {
-									int newCr = Cr.get(j) * 2;
-									Cr.set(j, newCr);
-								}
-								bracket = 0;
-								word = "";
+						Pattern recP = Pattern.compile(rec_regex);
+						Matcher recM = recP.matcher(lines.get(i));
+						
+						// find if recursive
+						if (recM.find()) {
+							recc = true;
+						}
+						if (bracket <= 0 && recc) {
+							endLine = i;
+							for (int j = startLine; j <= endLine; j++) {
+								int newCr = Cr.get(j) * 2;
+								Cr.set(j, newCr);
 							}
-						} else if (bracket < 1) {
 							bracket = 0;
 							startLine = 0;
 							endLine = 0;
 							word = "";
+							recc = false;
 						}
 				}
 
