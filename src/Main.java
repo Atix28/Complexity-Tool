@@ -11,7 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import Cnc.Cnc;
 import Cps.Cps_C;
 import Cps.Cps_java;
-import Cr.Cr;
+import Cr.Cr_java;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
@@ -138,7 +138,7 @@ public class Main {
 				System.out.println("\tTotal Cps : " + Cps.getTotalCps() );
 				System.out.println("========== End of Cps check ==========");
 				System.out.println("========== Starting Cr check ==========");
-				Cr Cr = new Cr(line,Cps_units);
+				Cr_java Cr = new Cr_java(line);
 				ArrayList<Integer> Cr_units = Cr.getCr();
 				for (int i = 0; i < Cr_units.size(); i++) {
 					System.out.println("\t" + (1 + i) + " Line has " + Cr_units.get(i) + " Cr");

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Cps.Cps_C;
+
 // Measuring complexity due to Recursions
-public class Cr {
+public class Cr_cpp {
 	
 	ArrayList<String> lines;
 	ArrayList<Integer> Cr;
@@ -24,9 +26,10 @@ public class Cr {
 	int endLine = 0;
 	boolean recc = false;
 	
-	public Cr(ArrayList<String> lines, ArrayList<Integer> cps) {
+	public Cr_cpp(ArrayList<String> lines) {
 		this.lines = lines;
-		Cr = cps;
+		Cps_C cps = new Cps_C(lines);
+		Cr = cps.getCps();
 	}
 	
 	public void calculateCr() {
