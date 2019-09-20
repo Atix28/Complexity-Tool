@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class Cs_java {
 	ArrayList<String> lines;
 	ArrayList<Integer> CsUnit;
+	ArrayList<String> token;
 
 	// Expressions for checking Keywords
 	String keyword_regx = "\\b(?!public |static |else |else\\{|try |try\\{|return )[\\d\\w]+";
@@ -44,9 +45,11 @@ public class Cs_java {
 
 		int count = 0;
 		while (matcher.find()) {
+			token.add(line);
 			count++;
 		}
-
+		
+		
 		return count;
 	}
 
@@ -208,5 +211,11 @@ public class Cs_java {
 		}
 
 		return total;
+	}
+	public void Print_Token() 
+	{
+		for (int i = 0; i < token.size(); i++) {
+			System.out.println(token.get(i));
+		}		
 	}
 }
