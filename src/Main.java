@@ -1,13 +1,17 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 
 import Cnc.Cnc;
 import Cps.Cps_C;
 import Cps.Cps_java;
-import Cr.Cr;
+import Cr.Cr_java;
 import Cs.Cs_c;
 import Cs.Cs_java;
 import Ctc.*;
@@ -15,6 +19,7 @@ import Tw.Tw_C;
 import Tw.Tw_java;
 import Ci.*;
 import inputValidator.FormatValidator;
+import optimization.OptimizeCode;
 
 public class Main {
 
@@ -26,22 +31,39 @@ public class Main {
 		// End Member Declarations
 
 		try {
-			@SuppressWarnings("resource")
-			FileReader file = new FileReader(filename);
-			StringBuffer sb = new StringBuffer();
-			while (file.ready()) {
-				char character = (char) file.read();
-				if (character == '\n') {
-					line.add(sb.toString());
-					sb = new StringBuffer();
-				} else {
-					sb.append(character);
-				}
-
-			}
-			if (sb.length() < 0) {
-				line.add(sb.toString());
-			}
+			InputStream is = new FileInputStream(filename); 
+			BufferedReader buf = new BufferedReader(new InputStreamReader(is)); 
+			String code = buf.readLine(); 
+			StringBuilder sbuilder = new StringBuilder(); 
+			while(code != null){ 
+				sbuilder.append(code).append("\n"); 
+				code = buf.readLine(); } 
+			String fileAsString = sbuilder.toString(); 
+			OptimizeCode OptCode = new OptimizeCode(fileAsString);
+			String optimizedcode = OptCode.RemoveCmts();
+			System.out.println("Optimized Code : \n" + optimizedcode);
+			
+			String[] lines = optimizedcode.split("\\r?\\n");
+	        for (String l : lines) {
+	            line.add(l);
+	        }
+			
+//			@SuppressWarnings("resource")
+//			FileReader file = new FileReader(filename);
+//			StringBuffer sb = new StringBuffer();
+//			while (file.ready()) {
+//				char character = (char) file.read();
+//				if (character == '\n') {
+//					line.add(sb.toString());
+//					sb = new StringBuffer();
+//				} else {
+//					sb.append(character);
+//				}
+//
+//			}
+//			if (sb.length() < 0) {
+//				line.add(sb.toString());
+//			}
 			System.out.println("============ Validating " + line.size() + " Lines of Code ===================");
 			FormatValidator validator = new FormatValidator(line);
 			if(!validator.runValidator()) {
@@ -116,7 +138,7 @@ public class Main {
 				System.out.println("\tTotal Cps : " + Cps.getTotalCps() );
 				System.out.println("========== End of Cps check ==========");
 				System.out.println("========== Starting Cr check ==========");
-				Cr Cr = new Cr(line,Cps_units);
+				Cr_java Cr = new Cr_java(line);
 				ArrayList<Integer> Cr_units = Cr.getCr();
 				for (int i = 0; i < Cr_units.size(); i++) {
 					System.out.println("\t" + (1 + i) + " Line has " + Cr_units.get(i) + " Cr");

@@ -6,7 +6,8 @@ const double pi = 3.14159;
 int main() 
 { 
 float length, width, area; 
-if(){}
+if(condtion) {
+}
 cout << "Enter The Length Of The Rectangle: "; 
 cin >> length; 
 cout << "Enter The Width Of Rectangle: "; 

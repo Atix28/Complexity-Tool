@@ -1,76 +1,25 @@
-public class code extends ex{
-if(1==1) { 
-	if (condition) {
-	       
-			}
-		if(condition || condition 2 && conditon 3 | sd) {
-			checkif ifcheck
-			if(condition) {
-				
-			}
-				if(condtion) {
-					sddd
-				}
-		}
-		for (condition | s  || ds) {
-			for (conditon 2 || condtion) {
-				fff
-			}
-		}
-		if (condition | and & or) { }
-		switch () {
-		case 1:
-		case 2:
-		default:
-		new
-		
-		}
-		
-		try { 
-			
-		} catch() {
-			
-		}
-		throw { }
-	}
-while(condition) {
-	
-}
-do {
+public class FactMain {
+  public static void main(String args[]) {
+    for (int counter = 0; counter <= 10; counter++) {
+      System.out.printf("%d! = %d\n", counter, factorial(counter));
+    }
+  }
 
-	
-}while (condition || condition && condition);
-private void funcs() {
-	if(cin) {
-		if(condition) {
-			sss
+  // recursive declaration of method factorial
+  public static long factorial(long number) {
+    if (number <= 1) { // test for base case
+      return 1;
+    } // base cases: 0! = 1 and 1! = 1
+    else {
+      // recursion step
+      return number * factorial(number - 1);
+    }
+  }
+  public void removeBracket() {
+		if (brackets > 0) {
+			brackets--;
+		}else {
+			count -= lastcount;
 		}
 	}
-	return funcs();
-}
-public class notex extends lll {
-	code {}
-	code {
-	}
-	code
-	{
-		
-	}
-	public class notex extends lll {
-		code {}
-		code {
-		}
-		code
-		{
-			
-		}
-	}
-}
-srting fabina() {
-	if(conditon) {
-		if(ss) {}
-	}
-	return fabina();
-}
-last line;
 }
