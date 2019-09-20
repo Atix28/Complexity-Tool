@@ -146,6 +146,9 @@ public class Main {
 				System.out.println("\tTotal Cr : " + Cr.getTotalCr() );
 				System.out.println("========== End of Cr check ==========");
 				
+				System.out.println("==============Token Printing=====================");
+				Cs.Print_Token();
+				
 //				System.out.println("========== Starting Cr check ==========");
 //				Cr cr = new Cr(line,Cnc_units);
 //				ArrayList <Integer> Cr_units = cr.getCr();
