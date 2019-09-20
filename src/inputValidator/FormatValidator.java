@@ -20,9 +20,25 @@ public class FormatValidator {
 	String for_regex = "\\b(for\\s*\\()";
 	// for condition checker
 	String for_format = "\\b(for\\s*\\(.+\\)\\s*\\{)";
+	
+	//ignore lines till class
+	String ignore_regex = "\\b(class)\\b\\s+\\w+";
 
 	public FormatValidator(ArrayList<String> line) {
 		this.line = line;
+	}
+	
+	public int ignoreTill() {
+		int lineno = 0;
+		Pattern pattern = Pattern.compile(if_regex);
+		for (int i = 0; i < line.size(); i++) {
+		Matcher matcher = pattern.matcher(line.get(i));
+		if(matcher.find()) {
+			return i;
+		}
+		}
+		
+		return lineno;
 	}
 
 	// if condition validate method

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import Cps.Cps_java;
+import Cps.Cps_C;
 
 // Measuring complexity due to Recursions
-public class Cr_java {
+public class Cr_cpp {
 	
 	ArrayList<String> lines;
 	ArrayList<Integer> Cr;
@@ -15,7 +15,7 @@ public class Cr_java {
 	String word = "";
 	// Expression for finding function
 	String function_regex = "(\\w+\\s+)(\\w+\\s*)\\((.*?)\\)\\s*\\{";
-
+	
 	String openBrackets = "\\{";
 	String closeBrackets = "\\}";
 
@@ -24,9 +24,9 @@ public class Cr_java {
 	int endLine = 0;
 	boolean recc = false;
 	
-	public Cr_java(ArrayList<String> lines) {
+	public Cr_cpp(ArrayList<String> lines) {
 		this.lines = lines;
-		Cps_java cps = new Cps_java(lines);
+		Cps_C cps = new Cps_C(lines);
 		Cr = cps.getCps();
 	}
 	
