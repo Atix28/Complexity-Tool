@@ -51,7 +51,10 @@ public class Cs_c {
 				tokens+=matcher.group();
 			else
 				tokens+=","+matcher.group();
-			count++;
+			if(matcher.group().matches("new") || matcher.group().matches("delete") || matcher.group().matches("throw") || matcher.group().matches("throws") || matcher.group().matches("&"))
+				count += 2;
+			else
+				count++;
 		}
 		token.add(tokens);
 		
