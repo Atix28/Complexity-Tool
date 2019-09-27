@@ -22,4 +22,13 @@ public class FactMain {
 			count -= lastcount;
 		}
 	}
+  public int getTotalCi() {
+		int total = 0;
+
+		for (int i = 0; i < ci_units.size(); i++) {
+			total += ci_units.get(i);
+		}
+
+		return total;
+	}
 }

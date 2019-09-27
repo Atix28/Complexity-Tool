@@ -37,8 +37,8 @@ public class Cps_C {
 	public int getTotalCps() {
 		int total = 0;
 
-		for (int l = 0; l < CpsUnits.size(); l++) {
-			total += CpsUnits.get(l);
+		for (int i = 0; i < CpsUnits.size(); i++) {
+			total += CpsUnits.get(i);
 		}
 
 		return total;

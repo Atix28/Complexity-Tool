@@ -7,9 +7,10 @@ import java.util.regex.Pattern;
 public class Cs_c {
 	ArrayList<String> lines;
 	ArrayList<Integer> CsUnit;
+	ArrayList<String> token;
 
 	// Expressions for checking Keywords
-	String keyword_regx = "\\b(?!public |static |else |else\\{|try |try\\{|return )[\\d\\w]+";
+	String keyword_regx = "\\b(?!public |static |else |else\\{|try |try\\{|return |class |private )[\\d\\w]+|(\\\".*?\\\")|(?<=\\w)\\.(?=\\w)|(\\+\\+|\\-\\-|\\*|\\/|\\%|\\+|\\-)|(&&|\\|\\||!)|(\\^|\\||\\~|\\<\\<\\<|\\>\\>\\>|\\>\\>|\\<\\<)|(\\,|\\-\\>|\\:\\:)|(\\>\\>\\>\\=|\\<\\<\\=|\\>\\>\\=|\\^\\=|\\|\\=|\\&\\=|\\%\\=|\\/\\=|\\*\\=|\\-\\=|\\+\\=|\\=)|(==|!=|>=|<=|>|<)";
 	// Expression for checking the special words throw,throws,new,delete
 	String special_reg = "\\b(new |delete |throw |throws |throw\\{|throws\\{)";
 	// Expression for checking the relational operators
@@ -25,26 +26,38 @@ public class Cs_c {
 	// Expression for checking the Assignment operators
 	String ass_reg = "\\b\\w\\s*(\\>\\>\\>\\=| \\>\\>\\>\\= |\\<\\<\\=| \\<\\<\\= |\\>\\>\\=| \\>\\>\\= |\\^\\=| \\^\\= |\\|\\=| \\|\\= |\\&\\=| \\&\\= |\\%\\=| \\%\\= |\\/\\=| \\/\\= |\\*\\=| \\*\\= |\\-\\=| \\-\\= |\\+\\=| \\+\\= |\\=| \\= )\\s*\\w";
 	// Expression for checking the Manipulators operators
-	String man_reg = "\\b(endl|\\n)";
+	String man_reg = "((endl)\\b|(\"\\\\n\"))";
 	// Express for checking the String
-	String str_reg ="(\\\".+\\\")";
+	String str_reg ="\\\"(.*?)\\\"";
 
 	public Cs_c(ArrayList<String> lines) {
 		this.lines = lines;
 		CsUnit = new ArrayList<Integer>(lines.size());
+		token = new ArrayList<String>(lines.size());
 	}
 
+	
+
 	// this method will count the keywords in the code
-	public int keyword_count(String line) {
+	public int keyword_count(String line,int no) {
 
 		Pattern pattern = Pattern.compile(keyword_regx);
 		Matcher matcher = pattern.matcher(line);
 
 		int count = 0;
-		while (matcher.find()) {
-			count++;
+		String tokens="";
+		while(matcher.find()) {
+			if(tokens.matches(""))
+				tokens+=matcher.group();
+			else
+				tokens+=","+matcher.group();
+			if(matcher.group().matches("new") || matcher.group().matches("delete") || matcher.group().matches("throw") || matcher.group().matches("throws") || matcher.group().matches("&"))
+				count += 2;
+			else
+				count++;
 		}
-
+		token.add(tokens);
+		
 		return count;
 	}
 
@@ -176,19 +189,8 @@ public class Cs_c {
 
 	public void addtoArray() {
 		for (int i = 0; i < lines.size(); i++) {
-			int keyword_count = keyword_count(lines.get(i));
-			int special_count = special_count(lines.get(i));
-			int relation_count = relation_count(lines.get(i));
-			int arithmatic_count = arithmatic_count(lines.get(i));
-			int logical_count = logical_count(lines.get(i));
-			int bitwise_count = bitwise_count(lines.get(i));
-			int mic_count = mic_count(lines.get(i));
-			int ass_count = ass_count(lines.get(i));
-			int man_count = man_count(lines.get(i));
-			int str_count = str_count(lines.get(i));
-			CsUnit.add(keyword_count + special_count + relation_count + arithmatic_count + logical_count + bitwise_count
-					+ mic_count + ass_count + man_count + str_count);
-
+			int keyword_count = keyword_count(lines.get(i),i);
+			CsUnit.add(keyword_count);
 		}
 	}
 
@@ -207,5 +209,10 @@ public class Cs_c {
 
 		return total;
 	}
+	public void Print_Token() 
+	{
+		for (int i = 0; i < token.size(); i++) {
+			System.out.println(token.get(i));
+		}		
+	}
 }
-
